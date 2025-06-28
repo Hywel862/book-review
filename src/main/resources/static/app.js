@@ -2,11 +2,11 @@ function createReview() {
     const [title, setTitle] = React.useState('');
     const [rating, setRating] = React.useState(0);
     const [description, setDescription] = React.useState('');
-    const [showSuccess, setShowSuccess] = react.useState(false);
+    const [showSuccess, setShowSuccess] = React.useState(false);
 
     const handleSubmission = async (event) => {
         event.preventDefault();
-        const response = await fetch('http://localhost:8080/reviews/create', {
+        const response = await fetch('/reviews/create', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
