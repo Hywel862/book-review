@@ -1,55 +1,16 @@
-function createReview() {
-    const [title, setTitle] = React.useState('');
-    const [rating, setRating] = React.useState(0);
-    const [description, setDescription] = React.useState('');
-    const [showSuccess, setShowSuccess] = React.useState(false);
-
-    const handleSubmission = async (event) => {
-        event.preventDefault();
-        const response = await fetch('/reviews/create', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                title: title,
-                rating: rating,
-                description: description
-            }),
-        });
-        if (response.ok) {
-            setShowSuccess(true);
-        }
-    }
-
+function app() {
     return React.createElement('div', null,
-        React.createElement('h1', null, 'Create a Review'),
-        showSuccess ? React.createElement('p', null, 'Review created successfully') : null,
-        React.createElement('form', {onSubmit: handleSubmission},
-            React.createElement('input',
-                {
-                    value: title,
-                    onChange: event => setTitle(event.target.value),
-                    placeholder: "Title",
-                    style: {marginRight: '10px'}
-                }),
-            React.createElement('input',
-                {
-                    value: rating,
-                    onChange: event => setRating(event.target.value),
-                    placeholder: "Rating",
-                    style: {marginRight: '10px'}
-                }),
-            React.createElement('input',
-                {
-                    value: description,
-                    onChange: event => setDescription(event.target.value),
-                    placeholder: "Description",
-                    style: {marginRight: '10px'}
-                }),
-            React.createElement('button', {type: 'submit'}, 'Submit')
-        ),
-    )
-}
+        React.createElement('button', {
+            type: 'button',
+            onClick: () => window.location.href = 'create-review.html',
+            style: {display: 'block', marginBottom: '10px'}
+        }, 'Create a review'),
 
-ReactDOM.render(React.createElement(createReview), document.getElementById('root'));
+        React.createElement('button', {
+            type: 'button',
+            onClick: () => window.location.href = 'retrieve-reviews.html',
+            style: {display: 'block', marginBottom: '10px'}
+        }, 'Retrieve reviews')
+    );
+}
+ReactDOM.render(React.createElement(app), document.getElementById('root'));
